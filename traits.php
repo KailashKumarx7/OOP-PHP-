@@ -16,6 +16,9 @@
 
  */
 
+
+////////////////////////////////////////// how traits work//////////////
+ 
 trait hello{
     public function sayhello(){
         echo "Hello Nepal";

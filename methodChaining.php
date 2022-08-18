@@ -6,7 +6,7 @@
     }
     public function second(){
         echo "This is second function\n";
-        return $this;
+        return $this; 
     }
     public function third(){
         echo "This is third function\n";

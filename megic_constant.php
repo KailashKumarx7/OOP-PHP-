@@ -70,6 +70,6 @@ class MyClass{
 
 
 $obj = new MyClass();
-echo $obj->getTraitname();
+echo $obj->getTraitname(); 
 
 ?>

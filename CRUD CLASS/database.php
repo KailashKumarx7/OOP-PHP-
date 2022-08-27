@@ -23,6 +23,9 @@ class Database{
                 return false;
             }
         }
+        else{
+            return true;
+        }
 
 
     }
@@ -51,7 +54,15 @@ class Database{
 
 
     //close connection
-    public function --destruct(){
+    public function __destruct(){
+        if($this->conn){
+            if($this->mysqli->close()){
+                $this->conn = false;
+                return true;
+            }
+        }else{
+            return false;
+        }
 
     }
 

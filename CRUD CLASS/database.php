@@ -17,7 +17,7 @@ class Database{
 
         if(!$this->conn){
             $this->mysqli = new mysqli($this->db_host,$this->db_user,$this->db_pass,$this->db_name);
-
+            $this->conn= true;
             if($this->mysqli->connect_error){
                 array_push($this->result, $this->mysqli->connect_error);
                 return false;
@@ -31,8 +31,12 @@ class Database{
     }
 
     //Function to insert into the database
-    public function insert(){
+    public function insert($table, $params=array()){
+        if($this->tableExists($table)){
+            $sql = "INSERT INTO $table () VALUE ()";
+        }else{
 
+        }
     }
 
 
@@ -50,6 +54,21 @@ class Database{
     //Function to Select from the database
     public function select(){
 
+    }
+
+
+    private function tableExists($table){
+        $sql = "SHOW TABLES FROM $this->db_name LIKE '$table'";
+        $tableInDb= $this->mysqli->query($sql);
+        if($tableInDb){
+            if($tableInDb->num_rows == 1){
+                return true;
+            }else{
+                array_push($this->result, $table."does not exist in this database");
+                return flase;
+
+            }
+        }
     }
 
 

@@ -58,36 +58,32 @@ class Database{
     }
 
 
-    //Function to update row in database
-    public function update($table, $params=array(), $where= null){
-        if($this->tableExists($table)){
+  // Function to update row in database
+  public function update($table,$params=array(),$where = null){
+    // Check to see if table exists
+  	if($this->tableExists($table)){
+      // Create Array to hold all the columns to update
+      $args = array();
+      foreach ($params as $key => $value) {
+        $args[] = "$key = '$value'"; // Seperate each column out with it's corresponding value
+      }
 
-            $args = array();
-            foreach($params as $key => $value ){
-             $args[]= "$key='$value'"  ;
-
-            }
-           
-
-            $sql = "UPDATE $table SET " . implode(',', $args);;
-            if($where !=null){
-                $sql .= " WHERE $where";
-            }
-           if($this->mysqli->query($sql)){
-            array_push($this->result, $this->mysqli->affected_rows);
-            return true;
-
-
-           }else{
-            array_push($this->result, $this->mysqli->error);
-
-           }
-
-
-        }else{
-            return false;
-        }
+      $sql = "UPDATE $table SET " . implode(', ', $args);
+      if($where != null){
+        $sql .= " WHERE $where";
+      }
+      // Make query to database
+      if($this->mysqli->query($sql)){
+        array_push($this->result, $this->mysqli->affected_rows);
+        return true; // Update has been successful
+      }else{
+        array_push($this->result, $this->mysqli->error);
+        return false; // Update has not been successful
+      }
+    }else{
+      return false; // The table does not exist
     }
+  }
 
     //Function to delete table or row(s) from database
     public function delete($table, $where= null){

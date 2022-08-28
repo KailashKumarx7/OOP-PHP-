@@ -32,6 +32,8 @@ class Database{
 
     //Function to insert into the database
     public function insert($table, $params=array()){
+        
+        //Check to see if table exists
         if($this->tableExists($table)){
             
             $table_columns = implode(', ', array_keys($params));
@@ -89,26 +91,28 @@ class Database{
 
     //Function to delete table or row(s) from database
     public function delete($table, $where= null){
+        //Check to see if table exists
         if($this->tableExists($table)){
 
-            $sql = "DELETE FROM $table ";
+            $sql = "DELETE FROM $table ";//Create query to delete rows
             if($where!= null){
                 $sql .= "WHERE $where";
             }
+            // Submit query to database
             if($this->mysqli->query($sql)){
                 array_push($this->result, $this->mysqli->affected_rows);
-                return true;
+                return true; // The query executed correctly
     
     
                }else{
                 array_push($this->result, $this->mysqli->error);
-    
+                return false; // The query did not execute correctly
                }
             
 
         }
         else{
-            return false;
+            return false;// the table does not exist
         }
 
     }

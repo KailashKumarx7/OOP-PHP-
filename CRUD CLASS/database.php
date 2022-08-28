@@ -33,9 +33,25 @@ class Database{
     //Function to insert into the database
     public function insert($table, $params=array()){
         if($this->tableExists($table)){
-            $sql = "INSERT INTO $table () VALUE ()";
-        }else{
+            
+            $table_columns = implode(', ', array_keys($params));
+            $table_value = implode("', '", $params);
+             
+            $sql = "INSERT INTO $table ($table_columns) VALUE ('$table_value')";
+            
+            if($this->mysqli->query($sql)){
+                array_push($this->result, $this->mysqli->insert_id);
+                return true;
+            }
+            else{
+                array_push($this->result, $this->mysqli->error);
+                return flase;
 
+            }
+        
+        
+        }else{
+            return false;
         }
     }
 
@@ -69,6 +85,15 @@ class Database{
 
             }
         }
+    }
+
+    public function getResult(){
+        
+        $val = $this->result;
+        $this->reslut= array();
+        return $val;
+    
+    
     }
 
 

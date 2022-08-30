@@ -24,11 +24,16 @@
 
 
 
-$obj->sql('SELECT * FROM student');// table name and condition
+// $obj->sql('SELECT * FROM student');// table name and condition
+// //if u want to give two condition we have to use AND in between both condition
+//  echo "sql reslut is: ";
+//  print_r($obj->getResult());
+
+$obj->select('student','*',null,null,null,null);// table name and condition
 //if u want to give two condition we have to use AND in between both condition
- echo "sql reslut is: ";
- print_r($obj->getResult());
+  echo "select reslut is: ";
+  print_r($obj->getResult()); 
 
 
  
- ?>
+ ?> 

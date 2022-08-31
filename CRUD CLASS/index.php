@@ -5,7 +5,7 @@
 
                              
  $obj = new Database();
- $obj->insert('student', ['student_name'=>'Bikash sharma', 'age'=>'22', 'city'=>'Dhangadi']);
+ $obj->insert('student', ['student_name'=>'Shraddha g', 'age'=>'22', 'city'=>'Manmar']);
  echo "Insert reslut is: ";
  print_r($obj->getResult());
  

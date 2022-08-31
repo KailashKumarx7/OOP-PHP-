@@ -5,9 +5,9 @@
 
                              
  $obj = new Database();
-//  $obj->insert('student', ['student_name'=>'kp suri', 'age'=>'30', 'city'=>'vellor']);
-//  echo "Insert reslut is: ";
-//  print_r($obj->getResult());
+ $obj->insert('student', ['student_name'=>'Sagar', 'age'=>'20', 'city'=>'MNR']);
+ echo "Insert reslut is: ";
+ print_r($obj->getResult());
  
 
 
@@ -29,10 +29,10 @@
 //  echo "sql reslut is: ";
 //  print_r($obj->getResult());
 
-$obj->select('student','*',null,null,null,null);// table name and condition
-//if u want to give two condition we have to use AND in between both condition
-  echo "select reslut is: ";
-  print_r($obj->getResult()); 
+// $obj->select('student','*',null,null,null,null);// table name and condition
+// //if u want to give two condition we have to use AND in between both condition
+//   echo "select reslut is: ";
+//   print_r($obj->getResult()); 
 
 
  

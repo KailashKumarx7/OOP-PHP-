@@ -19,7 +19,6 @@
 // $obj->delete('student','id="3"');// table name and condition
 // if u want to give two condition we have to use AND in between both condition
 //  echo "delete reslut is: ";
-
 //  print_r($obj->getResult());
 
 
